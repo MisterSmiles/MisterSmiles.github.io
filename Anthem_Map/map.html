@@ -1,0 +1,551 @@
+<!doctype html>
+<html> 
+<head> 
+  <meta http-equiv=content-type content="text/html;charset=UTF-8">
+  <meta name=author content="chindesaurus">
+  <title>Map</title> 
+  <style>
+    html, body, #map { height: 100%; margin: 0; padding: 0;}
+    #legend {
+        font-family: Arial, sans-serif;
+        background: #fff;
+        padding: 10px;
+        margin: 10px;
+        border: 2px solid #000;
+    }
+    #legend h3 {
+        margin-top: 0;
+    }
+    #legend img {
+        vertical-align: middle;
+    }
+  </style>
+  <script src="http://maps.google.com/maps/api/js?key=AIzaSyCTQGhJqP_OXYAzTCKxt2enCcazOb3FhEw&sensor=false"></script>
+   <base target="_blank">
+</head> 
+
+<body>
+  
+  <!-- the container for the map -->
+  <div id=map></div>
+  <div id=legend><h3> &nbsp;Legend</h3></div>
+  
+  <script src=./js/black.js></script>
+  <script src=./js/blue.js></script>
+  <script src=./js/darkGreen.js></script>
+  <script src=./js/green.js></script>
+  <script src=./js/grey.js></script>
+  <script src=./js/orange.js></script>
+  <script src=./js/pink.js></script>
+  <script src=./js/purple.js></script>
+  <script src=./js/red.js></script>
+  <script src=./js/teal.js></script>
+  <script src=./js/yellow.js></script>
+      
+  <script>
+  /*
+   * MapTypeId.ROADMAP displays the default road map view
+   * MapTypeId.SATELLITE displays Google Earth satellite images
+   * MapTypeId.HYBRID displays a mixture of normal and satellite views
+   * MapTypeId.TERRAIN displays a physical map based on terrain information.
+   */
+  function initialize() {
+
+    // prepare an array of marker objects, one for each location
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 5,
+      center: new google.maps.LatLng(41.257160, -95.995102),    // Omaha, NE 
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      zoomControl: true,
+      scaleControl: true,
+      mapTypeControl: true,
+      streetViewControl: true,
+      rotateControl: true,
+      fullscreenControl: true,
+      // clean cut JSON
+      styles: 
+    [
+    {
+        "featureType": "administrative.locality",
+        "elementType": "all",
+        "stylers": [
+            {
+                "hue": "#2c2e33"
+            },
+            {
+                "saturation": 7
+            },
+            {
+                "lightness": 19
+            },
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "hue": "#ffffff"
+            },
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 100
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": [
+            {
+                "hue": "#ffffff"
+            },
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 31
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "hue": "#bbc0c4"
+            },
+            {
+                "saturation": -93
+            },
+            {
+                "lightness": 31
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "hue": "#bbc0c4"
+            },
+            {
+                "saturation": -93[
+    {
+        "featureType": "administrative.locality",
+        "elementType": "all",
+        "stylers": [
+            {
+                "hue": "#2c2e33"
+            },
+            {
+                "saturation": 7
+            },
+            {
+                "lightness": 19
+            },
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "hue": "#ffffff"
+            },
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 100
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": [
+            {
+                "hue": "#ffffff"
+            },
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 100
+            },
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "hue": "#bbc0c4"
+            },
+            {
+                "saturation": -93
+            },
+            {
+                "lightness": 31
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "hue": "#bbc0c4"
+            },
+            {
+                "saturation": -93
+            },
+            {
+                "lightness": 31
+            },
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "hue": "#bbc0c4"
+            },
+            {
+                "saturation": -93
+            },
+            {
+                "lightness": -2
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "hue": "#e9ebed"
+            },
+            {
+                "saturation": -90
+            },
+            {
+                "lightness": -8
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "all",
+        "stylers": [
+            {
+                "hue": "#e9ebed"
+            },
+            {
+                "saturation": 10
+            },
+            {
+                "lightness": 69
+            },
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "hue": "#e9ebed"
+            },
+            {
+                "saturation": -78
+            },
+            {
+                "lightness": 67
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    }
+]
+            },
+            {
+                "lightness": 31
+            },
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "hue": "#bbc0c4"
+            },
+            {
+                "saturation": -93
+            },
+            {
+                "lightness": -2
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "hue": "#e9ebed"
+            },
+            {
+                "saturation": -90
+            },
+            {
+                "lightness": -8
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "all",
+        "stylers": [
+            {
+                "hue": "#e9ebed"
+            },
+            {
+                "saturation": 10
+            },
+            {
+                "lightness": 69
+            },
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "hue": "#b9d4f0"
+            },
+            {
+                "saturation": 0
+            },
+            {
+                "lightness": 67
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    }
+]
+
+
+    });
+
+    var marker, i, infoWindow = new google.maps.InfoWindow(); 
+    
+    // arrays of markers for each color
+    var blackMarkers = [];
+    var blueMarkers = [];
+    var darkGreenMarkers = [];
+    var greenMarkers = [];
+    var greyMarkers = [];
+    var orangeMarkers = [];
+    var pinkMarkers = [];
+    var purpleMarkers = [];
+    var redMarkers = [];
+    var tealMarkers = [];
+    var yellowMarkers = [];
+
+    /* adds markers from colorArray to the map */
+    function addMarkerSet(colorName, colorArray, markerArray) {
+
+        for (i = 0; i < colorArray.length; i++) {
+            // configure each marker      
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(colorArray[i][0], colorArray[i][1]),
+                map: map,
+                icon: './markers/' + colorName + '.png',
+                content: '<b>' + colorArray[i][2] + '</b><br>' + colorArray[i][3]
+            });
+
+            google.maps.event.addListener(marker, 'click', function () {
+                infoWindow.setContent(this.content);
+                infoWindow.open(map, this);
+            });
+
+            // add to markers array
+            markerArray.push(marker);
+
+         } // end loop
+    }
+
+    /* toggles marker visibility on map */
+    function toggleMarkerSet(markerArray) {
+   
+        for (i = 0; i < markerArray.length; i++) {
+            // if it's not visible, make it visible, and vice versa 
+            if (!markerArray[i].getVisible()) {
+                markerArray[i].setVisible(true);
+            } else {
+                markerArray[i].setVisible(false);
+            }
+
+        } // end loop
+    }
+    
+    // call addMarkerSet on all colors
+    addMarkerSet("black", black, blackMarkers);
+    addMarkerSet("blue", blue, blueMarkers);
+    addMarkerSet("darkGreen", darkGreen, darkGreenMarkers);
+    addMarkerSet("green", green, greenMarkers);
+    addMarkerSet("grey", grey, greyMarkers);
+    addMarkerSet("orange", orange, orangeMarkers);
+    addMarkerSet("pink", pink, pinkMarkers);
+    addMarkerSet("purple", purple, purpleMarkers);
+    addMarkerSet("red", red, redMarkers);
+    addMarkerSet("teal", teal, tealMarkers);
+    addMarkerSet("yellow", yellow, yellowMarkers);
+
+    /* create map marker legend */
+
+    // specify the icons/labels to use in the legend
+    var icons = {
+          colorRed: {
+            name: 'GPM',
+            icon: './markers/red.png'
+          },
+          colorYellow: {
+            name: 'GPM - Quarles',
+            icon: './markers/yellow.png'
+          },
+          colorOrange: {
+            name: 'Caseys General Stores',
+            icon: './markers/orange.png'
+          },
+          colorGreen: {
+            name: 'Yesway',
+            icon: './markers/green.png'
+          },
+          colorTeal: {
+            name: 'TA (acquired by BP)',
+            icon: './markers/teal.png'
+          },
+          colorblue: {
+            name: 'Circle K',
+            icon: './markers/blue.png'
+          },
+          colorPurple: {
+            name: 'Murphy USA',
+            icon: './markers/purple.png'
+          },
+          colorGrey: {
+            name: 'Kum & Go (acquired by Maverik)',
+            icon: './markers/grey.png'
+          }/*,
+          colorPink: {
+            name: 'Broudy\'s Fine Wine and Spirits',
+            icon: './markers/pink.png'
+          },
+          colorDarkGreen: {
+            name: 'TRA Liquors and Wines',
+            icon: './markers/darkGreen.png'
+          },
+          colorblack: {
+            name: 'Inlet Fine Wines and Spirits',
+            icon: './markers/black.png'
+          }*/
+
+    };
+    
+    
+    var legend = document.getElementById('legend');
+    for (var key in icons) {
+        var type = icons[key]; 
+        var name = type.name;
+        var icon = type.icon;
+        var div = document.createElement('div');
+        // give each input (type checkbox) an id corresponding to the color in the legend
+        div.innerHTML = '<input type="checkbox" id="' + icon.slice(10, icon.length-4) + '" checked><img src="' + icon + '"> ' + name + '<br><br>';
+        legend.appendChild(div);
+    }
+
+
+    // push it to the map
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+    //map.controls[google.maps.ControlPosition.LEFT_TOP].push(legend);
+    
+    // set up toggling DOM eventListeners
+    //document.getElementById("black").addEventListener("click", function() { toggleMarkerSet(blackMarkers); });
+    document.getElementById("blue").addEventListener("click", function() { toggleMarkerSet(blueMarkers); });
+    //document.getElementById("darkGreen").addEventListener("click", function() { toggleMarkerSet(darkGreenMarkers); });
+    document.getElementById("green").addEventListener("click", function() { toggleMarkerSet(greenMarkers); });
+    document.getElementById("grey").addEventListener("click", function() { toggleMarkerSet(greyMarkers); });
+    document.getElementById("orange").addEventListener("click", function() { toggleMarkerSet(orangeMarkers); });
+    //document.getElementById("pink").addEventListener("click", function() { toggleMarkerSet(pinkMarkers); });
+    document.getElementById("purple").addEventListener("click", function() { toggleMarkerSet(purpleMarkers); });  
+    document.getElementById("red").addEventListener("click", function() { toggleMarkerSet(redMarkers); });
+    document.getElementById("teal").addEventListener("click", function() { toggleMarkerSet(tealMarkers); });
+    document.getElementById("yellow").addEventListener("click", function() { toggleMarkerSet(yellowMarkers); });
+
+  }   // end initialize() 
+
+  // initialize on page load
+  google.maps.event.addDomListener(window, 'load', initialize);
+  
+  
+  </script>
+</body>
